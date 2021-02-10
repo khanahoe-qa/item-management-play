@@ -1,0 +1,35 @@
+@(items: Seq[Item], form: Form[Item])(implicit messages: Messages)
+
+@main("Add an item") {
+
+<h1>Add an item</h1>
+<table>
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Stock</th>
+	</tr>
+	</thead>
+	<tbody>
+	@for(item <- items) {
+	<tr>
+		<td>@item.name</td>
+		<td>@item.desc</td>
+		<td>@item.price</td>
+		<td>@item.stock</td>
+	</tr>
+	}
+	</tbody>
+</table>
+
+@helper.form(routes.HomeController.add()) {
+@helper.inputText(form("name"), 'id -> "SomeId", 'class -> "SomeClass")
+@helper.inputText(form("desc"))
+@helper.inputText(form("price"))
+@helper.inputText(form("stock"))
+
+<button type="submit">Create item</button>
+}
+}
